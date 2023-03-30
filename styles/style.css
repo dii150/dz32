@@ -1,0 +1,30 @@
+
+/*
+#textEdit {
+    display: none;
+}*/
+
+
+body {
+    background: cadetblue;
+    padding: 50px;
+}
+
+.textBox, textarea {
+    width: 50%;
+    height: 300px;
+    margin-left: 23%;
+    font-size: 20px;
+    border: 2px solid black;
+    padding: 20px;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    border: 5px solid white;
+    background: cadetblue;
+    color: white;
+    cursor: pointer;
+    margin: 0 auto;
+}

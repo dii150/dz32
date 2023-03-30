@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../styles/table.css">
+    <title>Document</title>
+</head>
+<body>
+
+<table id="myTable">
+  <thead>
+  <tr>
+    <th onclick="sortTable(0)">Ім'я</th>
+    <th onclick="sortTable(1)">Вік</th>
+    <th onclick="sortTable(2)">Зріст (см)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Олександр</td>
+    <td>32</td>
+    <td>178</td>
+  </tr>
+  <tr>
+    <td>Оксана</td>
+    <td>28</td>
+    <td>165</td>
+  </tr>
+  <tr>
+    <td>Іван</td>
+    <td>41</td>
+    <td>182</td>
+  </tr>
+  <tr>
+    <td>Марія</td>
+    <td>25</td>
+    <td>170</td>
+  </tr>
+  </tbody>
+</table>
+
+<p>Ім'я чогось не хоче працювати</p>
+
+<a href="../index.html"><button>Go to main page</button></a>
+<a href="../pages/text.html"><button>Go to text block</button></a>
+<script>
+  function sortTable(n) {
+    let table = document.querySelector("#myTable");
+    let rows = Array.from(table.querySelectorAll("tr"));
+    let headerRow = rows.shift();
+
+    if (n === 0) return;
+
+    let isNumeric = false;
+
+    let testValue = rows[0].querySelectorAll("td")[n].textContent.trim();
+    if (testValue !== "" && !isNaN(testValue)) {
+      isNumeric = true;
+    }
+
+    rows.sort((a, b) => {
+      let x = a.querySelectorAll("td")[n].textContent.trim();
+      let y = b.querySelectorAll("td")[n].textContent.trim();
+
+      if (n !== 0) {
+        if (x === "" || y === "") {
+          return 0;
+        }
+
+        if (isNumeric) {
+          return x - y;
+        } else {
+          return x.localeCompare(y, undefined, { numeric: true });
+        }
+      }
+    });
+
+    rows.unshift(headerRow);
+    for (let i = 0; i < rows.length; i++) {
+      table.appendChild(rows[i]);
+    }
+  }
+
+</script>
+
+</body>
+</html>
